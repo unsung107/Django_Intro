@@ -2,7 +2,8 @@
 from django.shortcuts import render
 from datetime import datetime
 import random
-
+import requests
+url = 'https://dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=870'
 
 def index(request):      # 첫 번째 인자는 반드시 request=>사용자가 보내는 요청에 대한 정보
     # 요청이 들어오면 'index.html'을 보여준다.
@@ -78,3 +79,62 @@ def lotto(request):
     }
     return render(request, 'lotto.html', context)
 
+def search(request):
+    return render(request, 'search.html')
+
+def result(request):
+    query = request.GET.get('query')
+    category = request.GET.get('category')
+    context = {
+        'query': query,
+        'category':category,
+    }
+    return render(request, 'result.html', context)
+
+def lotto_result(request):
+    lotto_numbers = request.GET.get('lotto_numbers')
+    lotto_numbers = list(map(int,lotto_numbers.split()))
+    lotto_numbers.sort()
+
+    response = requests.get(url)
+    lotto_info = response.json()
+    bonus = lotto_info['bnusNo']
+    print(lotto_info)
+
+    goal = []
+    for k in lotto_info.keys():
+        if 'drwtNo' in k:
+            goal.append(lotto_info[k])
+
+    # goal = [21, 25, 30, 32, 40, 42]
+    grade = {
+        6: '1등',
+        5: '3등',
+        4: '4등',
+        3: '5등',
+    }
+    print(lotto_numbers)
+    count = 0
+    for i in range(6):
+        if lotto_numbers[i] in goal:
+            count += 1
+    if grade.get(count) != None:
+        if count == 5 and bonus in lotto_numbers:
+            result = '2등'
+        else:
+            result = grade[count]
+    else:
+        result = '꽝'
+
+    context = {
+        'lotto_numbers': lotto_numbers,
+        'result': result,
+        'goal': goal,
+        'bonus': bonus,
+
+    }
+    
+    return render(request, 'lotto_result.html', context)
+
+def lotto_pick(request):
+    return render(request, 'lotto_pick.html')
