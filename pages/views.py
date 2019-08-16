@@ -138,3 +138,6 @@ def lotto_result(request):
 
 def lotto_pick(request):
     return render(request, 'lotto_pick.html')
+
+def static_example(request):
+    return render(request, 'static_example.html')

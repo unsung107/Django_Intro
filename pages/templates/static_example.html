@@ -1,0 +1,18 @@
+{% comment %} 각 어플리케이션에 있는 스태틱 폴더에 있는 스태틱 파일들의 주소를 생성 {% endcomment %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{% static 'example.css' %}">
+  <title>Static Example</title>
+</head>
+<body>
+  <h1>STATIC 파일 실습</h1>
+  <img src="{% static 'cat.jpg' %}" alt="CAT">
+</body>
+</html>

@@ -24,6 +24,7 @@ from pages import views #pages는 ../pages로 해야하지 않는가? 해도되�
 urlpatterns = [
     # path('login/', 로그인 페이지 관련 함수)
     #path('사용자가 접속하는 경로')
+    path('static_example/', views.static_example),
     path('template_language/', views.template_language),
     path('lotto_pick/', views.lotto_pick),
     path('lotto_result/', views.lotto_result),
