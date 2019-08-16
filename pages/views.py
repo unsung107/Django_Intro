@@ -1,6 +1,8 @@
 # pages/views.py
 from django.shortcuts import render
+from datetime import datetime
 import random
+
 
 def index(request):      # 첫 번째 인자는 반드시 request=>사용자가 보내는 요청에 대한 정보
     # 요청이 들어오면 'index.html'을 보여준다.
@@ -30,7 +32,7 @@ def image(request):
 
 def greeting(request, name):
     context = {
-        'name': name
+        'name': name,
     }
     return render(request, 'greeting.html', context)
 
@@ -42,4 +44,37 @@ def times(request, num1, num2):
         'num2': num2,
     }
     return render(request, 'times.html', context)
+
+def template_language(request):
+    menus = ['짜장면', '탕수육', '짬뽕', '양장피']
+    my_sentence = 'Life is short, you need python'
+    messages = ['apple', 'banana', 'cucumber', 'mango']
+    datetimenow = datetime.now()
+    empty_list = []
+    context = {
+        'menus': menus,
+        'my_sentence': my_sentence,
+        'messages': messages,
+        'empty_list': empty_list,
+        'datetimenow': datetimenow,
+    }
+    return render(request, 'template_language.html', context)
+
+def isitbirthday(request):
+    mybirthday = datetime(1993,6,16)
+    context = {
+        'mybirthday': mybirthday,
+    }
+    return render(request, 'isitbirthday.html', context)
+
+def lotto(request):
+    real_lotto = [21, 25, 30, 32, 40, 42]
+    lotto = random.sample(list(range(1,46)),6)
+    # lotto = [21, 25, 30, 32, 40, 42]
+    lotto.sort()
+    context = {
+        'real_lotto': real_lotto,
+        'lotto': lotto,
+    }
+    return render(request, 'lotto.html', context)
 

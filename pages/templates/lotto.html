@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  {% for number in lotto %}
+  <p>{{ number }}</p>
+  {% endfor %}
+
+  <p>{{ real_lotto }}</p>
+  <p>{{ lotto }} </p>
+
+  {% if real_lotto == lotto %}
+  <p>퇴사 가즈아!!!</p>
+  {% else %}
+  <p>야근 가즈아!!!</p>
+  {% endif %}
+</body>
+</html>
