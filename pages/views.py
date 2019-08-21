@@ -7,7 +7,7 @@ url = 'https://dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=870'
 
 def index(request):      # 첫 번째 인자는 반드시 request=>사용자가 보내는 요청에 대한 정보
     # 요청이 들어오면 'index.html'을 보여준다.
-    return render(request, 'index.html') #render의 첫번째 인자도 반드시 request가 들어간다.
+    return render(request, 'pages/index.html') #render의 첫번째 인자도 반드시 request가 들어간다.
 
 def introduce(request):
     return render(request, 'introduce.html')
@@ -21,7 +21,7 @@ def dinner(request, name):
     }
 
     #딕셔너리 형식으로 넘겨줘야함
-    return render(request, 'dinner.html', context)
+    return render(request, 'pages/dinner.html', context)
 
 def image(request):
     image_url = 'https://picsum.photos/400/300'
@@ -29,13 +29,13 @@ def image(request):
         'image_url': image_url,
     }
 
-    return render(request,'image.html',context)
+    return render(request,'pages/image.html',context)
 
 def greeting(request, name):
     context = {
         'name': name,
     }
-    return render(request, 'greeting.html', context)
+    return render(request, 'pages/greeting.html', context)
 
 
 def times(request, num1, num2):
@@ -44,7 +44,7 @@ def times(request, num1, num2):
         'num1': num1,
         'num2': num2,
     }
-    return render(request, 'times.html', context)
+    return render(request, 'pages/times.html', context)
 
 def template_language(request):
     menus = ['짜장면', '탕수육', '짬뽕', '양장피']
@@ -59,14 +59,14 @@ def template_language(request):
         'empty_list': empty_list,
         'datetimenow': datetimenow,
     }
-    return render(request, 'template_language.html', context)
+    return render(request, 'pages/template_language.html', context)
 
 def isitbirthday(request):
     mybirthday = datetime(1993,6,16)
     context = {
         'mybirthday': mybirthday,
     }
-    return render(request, 'isitbirthday.html', context)
+    return render(request, 'pages/isitbirthday.html', context)
 
 def lotto(request):
     real_lotto = [21, 25, 30, 32, 40, 42]
@@ -77,10 +77,10 @@ def lotto(request):
         'real_lotto': real_lotto,
         'lotto': lotto,
     }
-    return render(request, 'lotto.html', context)
+    return render(request, 'pages/lotto.html', context)
 
 def search(request):
-    return render(request, 'search.html')
+    return render(request, 'pages/search.html')
 
 def result(request):
     query = request.GET.get('query')
@@ -89,7 +89,7 @@ def result(request):
         'query': query,
         'category':category,
     }
-    return render(request, 'result.html', context)
+    return render(request, 'pages/result.html', context)
 
 def lotto_result(request):
     lotto_numbers = request.GET.get('lotto_numbers')
@@ -134,10 +134,10 @@ def lotto_result(request):
 
     }
     
-    return render(request, 'lotto_result.html', context)
+    return render(request, 'pages/lotto_result.html', context)
 
 def lotto_pick(request):
-    return render(request, 'lotto_pick.html')
+    return render(request, 'pages/lotto_pick.html')
 
 def static_example(request):
-    return render(request, 'static_example.html')
+    return render(request, 'pages/static_example.html')
