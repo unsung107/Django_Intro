@@ -128,7 +128,7 @@ $ django-admin startproject django_intro .
 ### Run server
 
 ```bash
-$ python manage.py runserver
+$python manage.py startapp pages
 ```
 
 - Ctrl + c 커맨드로 종료한다.
